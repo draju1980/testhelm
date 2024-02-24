@@ -1,0 +1,5 @@
+# i have used the below local location and created the below files
+# mkdir /Users/draju1980/out
+# befor running this chart please make sure you will update you local mount path in below location 
+# https://vscode.dev/github/draju1980/testhelm/blob/main/templates/deployment.yaml#L84
+# https://vscode.dev/github/draju1980/testhelm/blob/main/templates/deployment.yaml#L40-L41
