@@ -1,5 +1,73 @@
+# Prerequisite
+# 
+# Establish a local directory to map onto the host volume for deployment.
+#
 # i have used the below local location and created the below files
 # mkdir /Users/draju1980/out
 # befor running this chart please make sure you will update you local mount path in below location 
 # https://vscode.dev/github/draju1980/testhelm/blob/main/templates/deployment.yaml#L84
 # https://vscode.dev/github/draju1980/testhelm/blob/main/templates/deployment.yaml#L40-L41
+# 
+#####################
+# Once you unzip the uoploaded assitment file , to install the chart, run the following command:
+# Below command will generate a random chart name and install the chart.
+
+# helm install --generate-name  .
+# --------------------------------
+# example output
+# helm install --generate-name  .
+# NAME: chart-1708851984
+# LAST DEPLOYED: Fri Feb 23 08:43:58 2024
+# NAMESPACE: default
+# STATUS: deployed
+# REVISION: 1
+# TEST SUITE: None
+# --------------------------------
+# Once the chart is installed, you can run the following command to get the status of both the deployments
+# example output
+#
+# ❯ kubectl get all
+# NAME                             READY   STATUS    RESTARTS   AGE
+# pod/wordpress-64f9db6d49-cklsx   1/1     Running   0          2m22s
+# pod/wordpress-64f9db6d49-zc8qn   1/1     Running   0          2m22s
+#
+# NAME                 TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+# service/kubernetes   ClusterIP      10.96.0.1      <none>        443/TCP        20h
+# service/wordpress    LoadBalancer   10.107.58.74   127.0.0.1     80:31195/TCP   2m23s
+#
+# NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
+# deployment.apps/wordpress   2/2     2            2           2m23s
+#
+# NAME                                   DESIRED   CURRENT   READY   AGE
+# replicaset.apps/wordpress-64f9db6d49   2         2         2       2m23s
+#
+# NAME                                                REFERENCE              TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+# horizontalpodautoscaler.autoscaling/wordpress-hpa   Deployment/wordpress   <unknown>/50%   2         10        2          2m23s
+#
+# ❯ kubectl get all -n backend
+# NAME                                READY   STATUS    RESTARTS   AGE
+# pod/wordpress-db-6f967f4596-fm6hl   1/1     Running   0          25s
+#
+# NAME                      TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
+# service/wordpress-mysql   ClusterIP   None         <none>        3306/TCP   25s
+#
+# NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+# deployment.apps/wordpress-db   1/1     1            1           25s
+#
+# NAME                                      DESIRED   CURRENT   READY   AGE
+# replicaset.apps/wordpress-db-6f967f4596   1         1         1       25s
+#
+# NAME                                            REFERENCE                 TARGETS                       MINPODS   MAXPODS   REPLICAS   AGE
+# horizontalpodautoscaler.autoscaling/mysql-hpa   Deployment/wordpress-db   <unknown>/50%, <unknown>/10   1         5         1          25s
+# --------------------------------
+#
+# To uninstall the chart, run the following command:
+# ❯ helm uninstall chart-1708851984
+# release "chart-1708851984" uninstalled
+# --------------------------------
+#
+# To delete the chart, run the following command:
+# ❯ helm delete chart-1708851984
+# release "chart-1708851984" deleted
+# 
+#
